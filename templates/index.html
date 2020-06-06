@@ -1,0 +1,183 @@
+{% extends 'layout.html' %}
+
+{% block video %}
+<source src="{{ url_for('static', filename='noir.mp4') }}" type="video/mp4">
+{% endblock video %}
+
+{% block heading %}
+    <div class="col-lg-12 home">
+        <h1>Movies by the Sea</h1>
+        <p style="text-transform: none;">You only got one life. <br> Don't waste it by watching mediocre movies</p>  
+    </div>
+
+    <div class="col-lg-4 ">
+        <div class="div-img-bg">
+        <div class="about-img">
+            <img src="../static/images/me.jpeg" class="img-responsive" alt="me">
+        </div>
+        </div>
+    </div>
+
+    <div class="col-lg-7">
+        <div class="about-descr">
+
+        <p class="p-heading">Hi! I am Saumya Bhatt</p>
+        <p class="separator">I love watching movies! My Dad, an avid movie lover himself has a cabinate full of DVDs. It had all the 
+            classics. Mybe that's what got me started into movies.</p> <p> Though I'm no movie critique, I like to lable myself as a cinephile
+            and can definitely support that statement by a having watched a wide range of movies - from as early as '12 Angry Men' to 'Marriage Story'! 
+        </p>
+        <p>This is just a small project wherein I can share with you guys some of the best that cinema has to offer and give my two cents on it.
+            Hope you like it :)
+        </p>
+
+        </div>
+
+    </div>
+{% endblock heading %}
+
+{% block content %}
+    <div class="container">
+        <div class="section-title text-center">
+        <h2>Top Rated Reviews</h2>
+        <p>Although I try to keep up with all the latest movies and some of the classics, I physically cannot do so while giving equal 
+            amount of atention to studies! Hence I may have missed a few classics and the timeline of movies may not be in the correct order.
+            But I can assure you whatever movies I've written here are definitely a must watch! 
+        </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="journal-block">
+
+        <!--<div id="myBtnContainer">
+            <button class="btn" onclick="filterSelection('all')">all</button>
+            <button class="btn" onclick="filterSelection('lighthearted')">lighthearted</button>
+            <button class="btn" onclick="filterSelection('thriller')">thriller</button>
+            <button class="btn" onclick="filterSelection('psychopath')">psycho</button>
+            <button class="btn" onclick="filterSelection('animated')">animated</button>
+            <button class="btn" onclick="filterSelection('drama')">drama</button>
+            <button class="btn" onclick="filterSelection('inspirational')">inspirational</button>
+            <button class="btn" onclick="filterSelection('international')">international</button>
+            <button class="btn" onclick="filterSelection('true-story')">true-story</button>
+        </div>-->
+
+        <br><br>
+
+        <div class="row poster-grid">
+
+            {% for item in data %}
+                {% if item.Overall|float() > 3.9 %}
+                    {% if item.ID|int() != 21 %}
+                            <!-- {{ item.name }} --><!--DONE-->
+                            <div class="journal-info {{ item.Genre }}">
+                                <a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a>
+                            </div> 
+                            <div class="portfolio-modal modal fade" id="{{ item.ID }}"  role="dialog" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="close-modal" data-dismiss="modal">
+                                        <div class="lr">
+                                        <div class="rl" style="cursor: pointer; float: right;"><img src="../static/images/close.png" style="padding-right: 20px; padding-top: 15px;" alt=""></div>
+                                        </div>
+                                    </div>
+                                    <div class="container">
+                                        <div class="row">
+                                        <div>
+                                            <div class="modal-body">
+                                            <h2 class="text" style="text-align: center; font-family: 'Bitter', serif;">{{ item.Name }}</h2>
+                                            <p class="item-intro text-muted" style="text-align: center;">Average Rating: <b>{{ item.Overall }}</b></p>
+                                            <div>
+                                                <img class="img-fluid d-block mx-auto" style="height: 400px; width: auto;" src="../static/posters/{{ item.Poster }}" alt="{{ item.Name }}">
+                                                <p>{{ item.Review }}</p>
+                                            </div>
+                                            <br><br>
+                                                <div style="display: flexbox;">
+                                                <table style="width:100%;">
+                                                    <tr>
+                                                    <td>Directed By:</td>
+                                                    <td><b>{{ item.Director }}</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Year:</td>
+                                                    <td><b>{{ item.Year }}</b></td>
+                                                    </tr>
+                                                <tr>
+                                                    <td>Actor/Actress:</td>
+                                                    <td><b>{{ item.Lead }}</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Overall Rating:</td>
+                                                    <td><b>{{ item.Overall }}</b></td>
+                                                    </tr>
+                                                </table><br><br>
+                                                <table style="width: 50%;">
+                                                    <!--<tr>
+                                                        <th style="text-align:left;">Name</th>
+                                                        <th style="text-align:left;">ID</th>
+                                            
+                                                    </tr>-->
+                                                    <tr>
+                                                    <td>Acting:</td>
+                                                    <td><b>{{ item.Acting }}</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Story:</td>
+                                                    <td><b>{{ item.Story }}</b></td>
+                                                    </tr>
+                                                <tr>
+                                                    <td>Cinematography:</td>
+                                                    <td><b>{{ item.Execution }}</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Profundity:</td>
+                                                    <td><b>{{ item.Profundity }}</b></td>
+                                                    </tr>
+                                                </table>
+                                                </div>
+                                                <br>
+                                                <i style="display: flex;">
+                                                    <a href= "{{ item['Links'] }}">
+                                                    <img src="../static/images/link.png" style="height:3em; margin:0px 5px; width:auto;" alt="Link">
+                                                </a>
+                                                    {% if item.Netflix == 1 %}
+                                                        <img src="../static/images/netflix.svg" alt="Availabe on Netflix">
+                                                    {% endif %}
+                                                    {% if item.Prime == 1 %}
+                                                        <img src="../static/images/prime.svg" alt="Availabe on Prime">
+                                                    {% endif %}
+                                                </i>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}      
+
+        </div>
+        <br>
+        <p style="text-align: center;">Click <a href="reviews.html">here</a> to read more reviews!</p>
+
+        </div>
+    </div>
+
+    <br><br><br>
+    <div class="container" id="SEARCH">
+        <h3>Search Movies</h3>
+        <p>Enter the name of the movie, and get it's plot summary, the actors and the year of release. Press Enter to get the details.</p>
+        <form class="search" method="POST">
+            <input type="text" id="searchMovie" name="searchMovie" class="form-control" placeholder="Enter Movie Name - {{ result.title }}" data-rule="minlen:1" data-msg="Please enter a valid movie name" />
+            <input type="submit" onclick="searchMovie()" class="btn btn-defeault btn-send" value="Enter">
+        </form>
+        <div class="result">
+            <p><b>Movie Name</b> : {{ result.title }}</p>
+            <p><b>Year of release</b> : {{ result.year }}</p>
+            <p><b>Plot summary</b> : {{ result.plot }}</p>
+            <p><b>Actors</b> : {% for i in result.actors %}{{i}}, {% endfor %}</p>
+        </div>
+    </div>
+    <br><br>
+{% endblock content %}

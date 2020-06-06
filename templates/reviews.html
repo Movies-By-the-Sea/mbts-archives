@@ -1,0 +1,148 @@
+{% extends 'layout.html' %}
+
+{% block video %}
+<source src="{{ url_for('static', filename='video.mp4') }}" type="video/mp4">
+{% endblock video %}
+
+{% block heading %}
+<div class="col-lg-12 home">
+    <p style="text-transform: none;">"Medicine, law, business, engineering, these are noble pursuits<br> and necessary to sustain life. But </p>
+    <h1>poetry, beauty, romance, love,</h1>
+    <p style="text-transform: none;"> these are what we stay alive for."</p><br>
+    <br>
+    <p style="text-transform: none;">- Dead Poet's Society</p>
+  </div>
+{% endblock heading %}
+
+{% block content %}
+    <div class="container" style="padding-top: 40px;">
+        <div class="section-title text-center">
+            <h2>Reviews</h2>
+            <p>Although I try to keep up with all the latest movies and some of the classics, I physically cannot do so while giving equal 
+                amount of atention to studies! Hence I may have missed a few classics and the timeline of movies may not be in the correct order.
+                But I can assure you whatever movies I've written here are definitely a must watch! 
+            </p> <br>
+            <p>The ratings have been done as the average of four parameters - how is the acting by the main character, how the actual story
+                is, how well the cinematography has been done and finally, how much the movie has the ability to impact a person (profundity). Click on the 
+                poster given below to show a full review of the movie. Besides that, you will also find stickers such as <img style="height: 30px; width: auto;" src="../static/images/netflix.svg" alt="availabe on netflix"> and 
+            <img style="height: 30px; width: auto;" src="../static/images/prime.svg" alt="availabe on Amazon Prime"> . These mean whether or not the movie is availabe on netflix or on
+            Amazon Prime respectively.</p><br>
+            <p>Besides this is the symbol <img src="../static/images/link.png" style="height: 30px; width: auto;" alt="online link">. Clicking on this will take you to the online link where you can watch that movie for free! Yes you heard that right! No longer scoure the web for finding these movies or require costly subscription to Netflix! Don't worry, they are all tried and tested and won't affect you system with virus :P</p><br>
+            <p>All ratings are out of a maximum 5. Will keep on adding more movies soon. Keep an open eye for it!
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="journal-block">
+
+            <div id="myBtnContainer">
+                <button class="btn" onclick="filterSelection('all')">all</button>
+                <button class="btn" onclick="filterSelection('lighthearted')">lighthearted</button>
+                <button class="btn" onclick="filterSelection('thriller')">thriller</button>
+                <button class="btn" onclick="filterSelection('psychopath')">Dark</button>
+                <button class="btn" onclick="filterSelection('animated')">animated</button>
+                <button class="btn" onclick="filterSelection('drama')">drama</button>
+                <button class="btn" onclick="filterSelection('inspirational')">inspirational</button>
+                <button class="btn" onclick="filterSelection('international')">international</button>
+                <button class="btn" onclick="filterSelection('true-story')">true-story</button>
+            </div>
+
+            <br><br>
+
+            <div class="row poster-grid">
+                {% for item in data %}
+                    <!-- {{ item.name }} --><!--DONE-->
+                    <div class="journal-info {{ item.Genre }}">
+                        <a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a>
+                    </div> 
+                    <div class="portfolio-modal modal fade" id="{{ item.ID }}"  role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="close-modal" data-dismiss="modal">
+                                <div class="lr">
+                                <div class="rl" style="cursor: pointer; float: right;"><img src="../static/images/close.png" style="padding-right: 20px; padding-top: 15px;" alt=""></div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                <div>
+                                    <div class="modal-body">
+                                    <h2 class="text" style="text-align: center; font-family: 'Bitter', serif;">{{ item.Name }}</h2>
+                                    <p class="item-intro text-muted" style="text-align: center;">Average Rating: <b>{{ item.Overall }}</b></p>
+                                    <div>
+                                        <img class="img-fluid d-block mx-auto" style="height: 400px; width: auto;" src="../static/posters/{{ item.Poster }}" alt="{{ item.Name }}">
+                                        <p>{{ item.Review }}</p>
+                                    </div>
+                                    <br><br>
+                                        <div style="display: flexbox;">
+                                        <table style="width:100%;">
+                                            <tr>
+                                            <td>Directed By:</td>
+                                            <td><b>{{ item.Director }}</b></td>
+                                            </tr>
+                                            <tr>
+                                            <td>Year:</td>
+                                            <td><b>{{ item.Year }}</b></td>
+                                            </tr>
+                                        <tr>
+                                            <td>Actor/Actress:</td>
+                                            <td><b>{{ item.Lead }}</b></td>
+                                            </tr>
+                                            <tr>
+                                            <td>Overall Rating:</td>
+                                            <td><b>{{ item.Overall }}</b></td>
+                                            </tr>
+                                        </table><br><br>
+                                        <table style="width: 50%;">
+                                            <!--<tr>
+                                                <th style="text-align:left;">Name</th>
+                                                <th style="text-align:left;">ID</th>
+                                    
+                                            </tr>-->
+                                            <tr>
+                                            <td>Acting:</td>
+                                            <td><b>{{ item.Acting }}</b></td>
+                                            </tr>
+                                            <tr>
+                                            <td>Story:</td>
+                                            <td><b>{{ item.Story }}</b></td>
+                                            </tr>
+                                        <tr>
+                                            <td>Cinematography:</td>
+                                            <td><b>{{ item.Execution }}</b></td>
+                                            </tr>
+                                            <tr>
+                                            <td>Profundity:</td>
+                                            <td><b>{{ item.Profundity }}</b></td>
+                                            </tr>
+                                        </table>
+                                        </div>
+                                        <br>
+                                        <i style="display: flex;">
+                                            <a href= "{{ item['Links'] }}">
+                                            <img src="../static/images/link.png" style="height:3em; margin:0px 5px; width:auto;" alt="Link">
+                                        </a>
+                                            {% if item.Netflix == 1 %}
+                                                <img src="../static/images/netflix.svg" alt="Availabe on Netflix">
+                                            {% endif %}
+                                            {% if item.Prime == 1 %}
+                                                <img src="../static/images/prime.svg" alt="Availabe on Prime">
+                                            {% endif %}
+                                        </i>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>    
+                {% endfor %}
+            </div>
+
+            <br>
+            <p style="text-align: center;">Will keep on adding new movies as I watch!</p>
+
+        </div>
+    </div>
+{% endblock content %}
