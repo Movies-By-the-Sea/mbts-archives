@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, request
 app = Flask('__name__')
 
 import csv
-with open('reviews.csv') as f:
+with open('static/reviews.csv') as f:
     reader = csv.DictReader(f)
     data = [r for r in reader]
 
@@ -36,14 +36,14 @@ def userInput(query):
     }
     return MovieDetails
 
-@app.route('/reviews.html')
-def open():
-    return render_template('reviews.html', data=data)
-
 @app.route('/')
 @app.route('/index.html')
 def home():
     return render_template('index.html', data=data, result=userInput('Get Out'))
+
+@app.route('/reviews.html')
+def open():
+    return render_template('reviews.html', data=data)
 
 @app.route('/', methods=['POST'])
 @app.route('/index.html', methods=['POST'])
@@ -52,5 +52,5 @@ def my_form_post():
     processed_text = userInput(text)
     return render_template('index.html',data=data,result=processed_text)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
