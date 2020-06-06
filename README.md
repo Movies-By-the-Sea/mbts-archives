@@ -1,6 +1,6 @@
 # Movies by the Sea
 
-## Personal Movie review blog
+Personal Movie review blog
 
 ![Website Screenshot](mbts_SS.png)
 
