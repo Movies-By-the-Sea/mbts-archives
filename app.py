@@ -45,12 +45,7 @@ def home():
 def open():
     return render_template('reviews.html', data=data)
 
-@app.route('/', methods=['POST'])
-@app.route('/index.html', methods=['POST'])
-def my_form_post():
-    text = request.form['searchMovie']
-    processed_text = userInput(text)
-    return render_template('index.html',data=data,result=processed_text)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
