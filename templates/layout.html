@@ -23,6 +23,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap" rel="stylesheet">
 
   <!-- Bootstrap CSS File -->
   <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap/css/bootstrap.min.css') }}">
@@ -52,6 +53,9 @@
       .switch {
           display: none;
       }
+      .name1 {
+            display: none;
+      }
       @media only screen and (max-width: 600px) {
           .switch {
               display: flex;
@@ -59,6 +63,21 @@
           .home {
             padding-top: 70px;
           }
+          #about {
+            background-image: url("{{ url_for('static', filename='images/mobile.jpg') }}");
+            background-size: 100vh;
+            background-repeat: no-repeat;
+          }
+          #searchMovie {
+            width: 85vw;
+          }
+          .name1 {
+            display: block;
+          }
+          .name2 {
+            display: none;
+          }
+
       }
   </style>
 
@@ -78,7 +97,14 @@
       <div class="container">
 
         <div class="logo" style="display: flex;">
-          <a href="index.html"><img src="{{ url_for('static', filename='images/logo.png') }}" style="width: 4em; height: auto;" alt="logo"></a>
+          <div class="name1">
+            <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='images/logo.png') }}" style="width: 4em; height: auto;" alt="logo"></a>
+          </div>
+          <div class="name2">
+            <a href="{{ url_for('home') }}">
+              <h3 style="font-family: 'Mr Dafoe', cursive; color: bisque; margin: 10px 25px;" >Movies By the Sea</h3>
+            </a>
+          </div>
         </div>
 
         <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
