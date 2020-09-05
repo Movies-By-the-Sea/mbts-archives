@@ -76,21 +76,24 @@
                             <div class="portfolio-modal modal fade" id="{{ item.ID }}"  role="dialog" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                    <div class="close-modal" data-dismiss="modal">
+                                    <div class="close-modal" style="background-color: #242424;" data-dismiss="modal">
                                         <div class="lr">
                                         <div class="rl" style="cursor: pointer; float: right;"><img src="../static/images/close.png" style="padding-right: 20px; padding-top: 15px;" alt=""></div>
                                         </div>
                                     </div>
                                     <div class="container">
                                         <div class="row">
-                                        <div>
+                                        <div style="background-color: #242424;">
                                             <div class="modal-body">
                                             <h2 class="text" style="text-align: center; font-family: 'Bitter', serif;">{{ item.Name }}</h2>
                                             <p class="item-intro text-muted" style="text-align: center;">Average Rating: <b>{{ item.Overall }}</b></p>
                                             <div>
                                                 <!--<img class="img-fluid d-block mx-auto" style="height: 400px; width: auto;" src="../static/posters/{{ item.Poster }}" alt="{{ item.Name }}">-->
                                                 <iframe width="100%" height="315" src="{{ item.Trailer }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                                <p style="font-weight: bold;">Genre : {{item.Genre1}}, {{item.Genre2}}</p>
+                                                <p style="font-weight: bold;">Genre : 
+                                                    <span style="font-size: 1em;" class="badge badge-dark">{{item.Genre1}}</span>
+                                                    <span style="font-size: 1em;" class="badge badge-dark">{{item.Genre2}}</span>
+                                                </p>
                                                 <p>{{ item.Review }}</p>
                                             </div>
                                             <br><br>
@@ -140,13 +143,15 @@
                                                 <br>
                                                 <i style="display: flex;">
                                                     <a href= "{{ item['Links'] }}">
-                                                    <img src="../static/images/link.png" style="height:3em; margin:0px 5px; width:auto;" alt="Link">
-                                                </a>
+                                                        <img src="../static/images/link.png" style="height:3em; margin:0px 5px; width:auto;" alt="Link">
+                                                    </a>
                                                     {% if item.Netflix == 1 %}
                                                         <img src="../static/images/netflix.svg" alt="Availabe on Netflix">
+                                                        <span class="badge badge-info">Available on Netflix</span>
                                                     {% endif %}
                                                     {% if item.Prime == 1 %}
                                                         <img src="../static/images/prime.svg" alt="Availabe on Prime">
+                                                        <span class="badge badge-info">Available on Amazon Prime</span>
                                                     {% endif %}
                                                 </i>
                                             </div>
