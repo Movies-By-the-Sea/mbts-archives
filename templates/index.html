@@ -70,7 +70,8 @@
                     {% if item.ID|int() != 21 %}
                             <!-- {{ item.name }} --><!--DONE-->
                             <div class="journal-info {{ item.Genre }}">
-                                <a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a>
+                                <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a>-->
+                                <a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="{{ item.Image }}"  class="img-responsive" alt="{{ item.Name }}"></a>
                             </div> 
                             <div class="portfolio-modal modal fade" id="{{ item.ID }}"  role="dialog" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -89,6 +90,7 @@
                                             <div>
                                                 <!--<img class="img-fluid d-block mx-auto" style="height: 400px; width: auto;" src="../static/posters/{{ item.Poster }}" alt="{{ item.Name }}">-->
                                                 <iframe width="100%" height="315" src="{{ item.Trailer }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                <p style="font-weight: bold;">Genre : {{item.Genre1}}, {{item.Genre2}}</p>
                                                 <p>{{ item.Review }}</p>
                                             </div>
                                             <br><br>
