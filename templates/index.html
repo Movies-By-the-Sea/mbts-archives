@@ -161,10 +161,14 @@
     <br><br><br>
     <div class="container" id="SEARCH">
         <h3>Search Movies</h3>
-        <p>Enter the name of the movie, and get it's plot summary, the actors and the year of release. Press Enter to get the details.</p>
-        <form class="search" method="POST">
+        <p>Enter the name of the movie, and get it's plot summary, the actors and the year of release. Press Enter to get the details. Eg try 'Get Out'</p>
+        <!--<form class="search" method="POST">
             <input type="text" id="searchMovie" name="searchMovie" class="form-control" placeholder="Enter Movie Name - {{ result.title }}" data-rule="minlen:1" data-msg="Please enter a valid movie name" />
             <input type="submit" onclick="searchMovie()" class="btn btn-defeault btn-send" value="Enter">
+        </form>-->
+        <form action="{{ url_for('home') }}" class="search" method="post">
+            {{movie_input.csrf_token}}
+            {{movie_input.movie_name(class='form-control',placeholder='Enter Movie Name')}}
         </form>
         <div class="result">
             <p><b>Movie Name</b> : {{ result.title }}</p>

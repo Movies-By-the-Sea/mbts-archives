@@ -1,13 +1,15 @@
 from flask import Flask, render_template, url_for, request
-app = Flask('__name__')
-
+import requests
+import json
 import csv
+
+app = Flask('__name__')
+app.config['SECRET_KEY'] = 'jvkhvtyvuvvbytvchbycgfcg'
+
 with open('static/reviews.csv') as f:
     reader = csv.DictReader(f)
     data = [r for r in reader]
 
-import requests
-import json
 
 def userInput(query):
     url = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/"+query
@@ -36,12 +38,20 @@ def userInput(query):
     }
     return MovieDetails
 
-@app.route('/')
-@app.route('/index.html')
-def home():
-    return render_template('index.html', data=data, result=userInput('Get Out'))
+import forms
 
-@app.route('/reviews.html')
+@app.route('/')
+@app.route('/home', methods=['GET','POST'])
+def home():
+    movie_inp = forms.MovieSearch()
+    if movie_inp.validate_on_submit():
+        get_details = userInput(movie_inp.movie_name.data)
+        return render_template('index.html',data=data,result=get_details,movie_input=movie_inp)
+
+    temp_result = userInput('Get Out')
+    return render_template('index.html', data=data, movie_input=movie_inp,result=temp_result)
+
+@app.route('/reviews')
 def open():
     return render_template('reviews.html', data=data)
 
