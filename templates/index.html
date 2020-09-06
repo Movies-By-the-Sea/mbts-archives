@@ -49,18 +49,6 @@
     <div class="container">
         <div class="journal-block">
 
-        <!--<div id="myBtnContainer">
-            <button class="btn" onclick="filterSelection('all')">all</button>
-            <button class="btn" onclick="filterSelection('lighthearted')">lighthearted</button>
-            <button class="btn" onclick="filterSelection('thriller')">thriller</button>
-            <button class="btn" onclick="filterSelection('psychopath')">psycho</button>
-            <button class="btn" onclick="filterSelection('animated')">animated</button>
-            <button class="btn" onclick="filterSelection('drama')">drama</button>
-            <button class="btn" onclick="filterSelection('inspirational')">inspirational</button>
-            <button class="btn" onclick="filterSelection('international')">international</button>
-            <button class="btn" onclick="filterSelection('true-story')">true-story</button>
-        </div>-->
-
         <br><br>
 
         <div class="row poster-grid">
@@ -145,11 +133,11 @@
                                                     <a href= "{{ item['Links'] }}">
                                                         <img src="../static/images/link.png" style="height:3em; margin:0px 5px; width:auto;" alt="Link">
                                                     </a>
-                                                    {% if item.Netflix == 1 %}
+                                                    {% if item.Netflix == '1' %}
                                                         <img src="../static/images/netflix.svg" alt="Availabe on Netflix">
                                                         <span class="badge badge-info">Available on Netflix</span>
                                                     {% endif %}
-                                                    {% if item.Prime == 1 %}
+                                                    {% if item.Prime == '1' %}
                                                         <img src="../static/images/prime.svg" alt="Availabe on Prime">
                                                         <span class="badge badge-info">Available on Amazon Prime</span>
                                                     {% endif %}
