@@ -1,10 +1,19 @@
 from flask import Flask, render_template, url_for, request
+from flask_mail import Message, Mail
+
 import requests
 import json
 import csv
 
 app = Flask('__name__')
+mail = Mail()
 app.config['SECRET_KEY'] = 'jvkhvtyvuvvbytvchbycgfcg'
+app.config["MAIL_SERVER"] = "smtp.gmail.com"
+app.config["MAIL_PORT"] = 465
+app.config["MAIL_USE_SSL"] = True
+app.config["MAIL_USERNAME"] = 'saumya.bhatt106@gmail.com'
+app.config["MAIL_PASSWORD"] = 'tsiralzgmliklfzu'
+mail.init_app(app)
 
 with open('static/reviews.csv') as f:
     reader = csv.DictReader(f)
@@ -43,24 +52,47 @@ import forms
 @app.route('/')
 @app.route('/home', methods=['GET','POST'])
 def home():
+
     movie_inp = forms.MovieSearch()
+    contact_us_home = forms.ContactUs()
+
     if movie_inp.validate_on_submit():
         get_details = userInput(movie_inp.movie_name.data)
-        return render_template('index.html',data=data,result=get_details,movie_input=movie_inp)
+        return render_template('index.html',data=data,result=get_details,movie_input=movie_inp, contact_us=contact_us_home)
+    
+    if contact_us_home.validate_on_submit():
+        msg = Message(contact_us_home.subject.data, sender='saumya.bhatt106@gmail.com', recipients=['saumya.bhatt106@gmail.com'])
+        msg.body = """
+        From: %s 
+        Email Address: <%s>
+        Subject: %s
+
+        Message: 
+        %s
+        """ % (contact_us_home.name.data, contact_us_home.email.data,contact_us_home.subject.data, contact_us_home.message.data)
+        mail.send(msg)
+        return render_template('success_msg.html')
 
     temp_result = userInput('Get Out')
-    return render_template('index.html', data=data, movie_input=movie_inp,result=temp_result)
+    return render_template('index.html', data=data, movie_input=movie_inp,result=temp_result, contact_us=contact_us_home)
 
-@app.route('/reviews')
+@app.route('/reviews', methods=['GET','POST'])
 def open():
-    return render_template('reviews.html', data=data)
+    contact_us_review = forms.ContactUs()
+    if contact_us_review.validate_on_submit():
+        msg = Message(contact_us_review.subject.data, sender='saumi10600@gmail.com', recipients=['saumya.bhatt106@gmail.com'])
+        msg.body = """
+        From: %s 
+        Email Address: <%s>
+        Subject: %s
 
-@app.route('/', methods=['POST'])
-@app.route('/index.html', methods=['POST'])
-def my_form_post():
-    text = request.form['searchMovie']
-    processed_text = userInput(text)
-    return render_template('index.html',data=data,result=processed_text)
+        Message: 
+        %s
+        """ % (contact_us_review.name.data, contact_us_review.email.data,contact_us_review.subject.data, contact_us_review.message.data)
+        mail.send(msg)
+        return render_template('success_msg.html')
+    return render_template('reviews.html', data=data, contact_us=contact_us_review)
+
 
 @app.errorhandler(404)
 def page_not_found(e):
