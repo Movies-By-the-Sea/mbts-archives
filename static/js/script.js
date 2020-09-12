@@ -1,16 +1,3 @@
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyAqnO34l13pTkWWJYPOuscGd1qaqABhLbU",
-    authDomain: "movies-by-the-sea-279218.firebaseapp.com",
-    databaseURL: "https://movies-by-the-sea-279218.firebaseio.com",
-    projectId: "movies-by-the-sea-279218",
-    storageBucket: "movies-by-the-sea-279218.appspot.com",
-    messagingSenderId: "11881734156",
-    appId: "1:11881734156:web:9ef020bd4be1ae5aaece29"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
 
 filterSelection("all")
 function filterSelection(c) {
