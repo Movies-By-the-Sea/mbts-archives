@@ -13,7 +13,7 @@
     <div class="col-lg-4 ">
         <div class="div-img-bg">
         <div class="about-img">
-            <img src="../static/images/me.jpeg" class="img-responsive" alt="me">
+            <img src="../static/images/me.jpg" class="img-responsive" alt="me">
         </div>
         </div>
     </div>
@@ -151,7 +151,7 @@
 
         </div>
         <br>
-        <p style="text-align: center;">Click <a href="{{ url_for('open') }}" style="color: white;">here</a> to read more reviews!</p>
+        <p style="text-align: center;">Click <a href="{{ url_for('open') }}" style="color: bisque;">here</a> to read more reviews!</p>
 
         </div>
     </div>
@@ -160,10 +160,6 @@
     <div class="container" id="SEARCH">
         <h3>Search Movies</h3>
         <p>Enter the name of the movie, and get it's plot summary, the actors and the year of release. Press Enter to get the details. Eg try 'Get Out'</p>
-        <!--<form class="search" method="POST">
-            <input type="text" id="searchMovie" name="searchMovie" class="form-control" placeholder="Enter Movie Name - {{ result.title }}" data-rule="minlen:1" data-msg="Please enter a valid movie name" />
-            <input type="submit" onclick="searchMovie()" class="btn btn-defeault btn-send" value="Enter">
-        </form>-->
         <form action="{{ url_for('home') }}" class="search" method="post">
             {{movie_input.csrf_token}}
             {{movie_input.movie_name(class='form-control',placeholder='Enter Movie Name')}}
