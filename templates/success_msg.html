@@ -42,7 +42,7 @@
 <body>
     <div class="main_container">
         <div class="container">
-            <img style="height: 300px; width: 100%;" src="../static/images/message.gif" alt="">
+            <img style="height: 300px; width: 100%;" src="{{ url_for('static', filename='images/message.gif') }}" alt="">
             <h1 style="font-family: 'Prata', serif;">Your Message has been sent!</h1>
             <p>Thanks for getting in touch! Zero and M. Gustav will be delivering your message shortly!</p>
             <a style="color:moccasin; text-decoration: none;" href="{{ url_for('home') }}">Get back to home</a>

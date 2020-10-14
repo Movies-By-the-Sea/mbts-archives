@@ -1,8 +1,8 @@
 from flask import Flask, render_template, url_for, request
 from flask_mail import Message, Mail
-from movies import data, userInput
-from app import app, mail
-import forms
+from modules.movies import data, userInput
+from modules import app, mail
+from modules import forms
 
 @app.route('/')
 @app.route('/home', methods=['GET','POST'])
@@ -47,6 +47,13 @@ def open():
         mail.send(msg)
         return render_template('success_msg.html')
     return render_template('reviews.html', data=data, contact_us=contact_us_review)
+
+
+@app.route('/<int:movie_id>')
+def get_review(movie_id):
+    review = data[movie_id-1]
+    percent = int((review['Overall']/5)*100 + 10)
+    return render_template('movie_review.html',review=review, percent=percent)
 
 
 @app.errorhandler(404)
