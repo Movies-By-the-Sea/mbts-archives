@@ -32,7 +32,7 @@ def home():
     return render_template('index.html', data=data, movie_input=movie_inp,result=temp_result, contact_us=contact_us_home)
 
 @app.route('/reviews', methods=['GET','POST'])
-def open():
+def review():
     contact_us_review = forms.ContactUs()
     if contact_us_review.validate_on_submit():
         msg = Message(contact_us_review.subject.data, sender='saumi10600@gmail.com', recipients=['saumya.bhatt106@gmail.com'])
