@@ -52,7 +52,10 @@ def review():
 @app.route('/<int:movie_id>')
 def get_review(movie_id):
     review = data[movie_id-1]
-    percent = int((review['Overall']/5)*100 + 10)
+    if review['Overall'] > 3.9:
+        percent = int((review['Overall']/4.5)*100)
+    else:
+        percent = int((review['Overall']/4)*100)
     return render_template('movie_review.html',review=review, percent=percent)
 
 
