@@ -70,7 +70,8 @@
   <div class="container">
   <div class="review_page">
           <div class="image_block">
-            <img src="{{  url_for('static', filename='Movies/' + review.Poster) }}"  class="review_img-responsive" alt="{{ review.Name }}"><br>
+            <!-- <img src="{{  url_for('static', filename='Movies/' + review.Poster) }}"  class="review_img-responsive" alt="{{ review.Name }}"><br> -->
+            <img src="{{ review.Image }}"  class="review_img-responsive" alt="{{ review.Name }}"><br>
 
             <p class="rating">mbts score : <span style="font-size: 1.6em;font-weight: bold;">{{ percent }}%</span></p>
 
@@ -134,10 +135,10 @@
             </div>
             <br>
             {% if review.Netflix %}
-                <img src="{{ url_for('static',filename='images/netflix.svg') }}" class="ott_platform" alt="Availabe on Netflix">
+                <img src="{{ url_for('static',filename='images/netflix.svg') }}" class="ott_platform" alt="Available on Netflix">
             {% endif %}
             {% if review.Prime %}
-                <img src="{{ url_for('static',filename='images/prime.svg') }}" class="ott_platform" alt="Availabe on Prime">
+                <img src="{{ url_for('static',filename='images/prime.svg') }}" class="ott_platform" alt="Available on Prime">
             {% endif %}
           </div>
       </div>

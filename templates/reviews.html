@@ -76,28 +76,33 @@
                 {% for item in data %}
                     {% if item.Year >2010 %}
                         <div class="journal-info 2010_film {{ item.Genre1  }} {{ item.Genre2 }} {{ item.Netflix }}_Netflix {{ item.Prime }}_Prime">
-                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a>-->
-                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a>
+                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a>  2 TIMES BACK VERSION -->
+                            <!-- <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a> 1 TIME BACK VERSION-->
+                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{ item.Image }}"  class="img-responsive" alt="{{ item.Name }}"></a>
                         </div>
                     {% elif item.Year >2000 %}
                         <div class="journal-info 2000_film {{ item.Genre1  }} {{ item.Genre2 }} {{ item.Netflix }}_Netflix {{ item.Prime }}_Prime">
-                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a>-->
-                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a>
+                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a> 2 TIMES BACK VERSION -->
+                            <!-- <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a> 1 TIME BACK VERSION -->
+                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{ item.Image }}"  class="img-responsive" alt="{{ item.Name }}"></a>
                         </div>
                     {% elif item.Year >1990 %}
                         <div class="journal-info 1990_film {{ item.Genre1  }} {{ item.Genre2 }} {{ item.Netflix }}_Netflix {{ item.Prime }}_Prime">
-                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a>-->
-                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a>
+                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a> 2 TIMES BACK VERSION -->
+                            <!-- <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a> 1 TIME BACK VERSION -->
+                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{ item.Image }}"  class="img-responsive" alt="{{ item.Name }}"></a>
                         </div>
                     {% elif item.Year >1970 %}
                         <div class="journal-info 1970_film {{ item.Genre1  }} {{ item.Genre2 }} {{ item.Netflix }}_Netflix {{ item.Prime }}_Prime">
-                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a>-->
-                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a>
+                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a> 2 TIMES BACK VERSION -->
+                            <!-- <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a> 1 TIME BACK VERSION -->
+                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{ item.Image }}"  class="img-responsive" alt="{{ item.Name }}"></a>
                         </div>
                     {% else %}
                         <div class="journal-info old_film {{ item.Genre1  }} {{ item.Genre2 }} {{ item.Netflix }}_Netflix {{ item.Prime }}_Prime">
-                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a>-->
-                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a>
+                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a> 2 TIMES BACK VERSION -->
+                            <!-- <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a> 1 TIME BACK VERSION -->
+                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{ item.Image }}"  class="img-responsive" alt="{{ item.Name }}"></a>
                         </div>                    
                     {% endif %} 
 
