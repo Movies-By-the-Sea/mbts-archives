@@ -21,14 +21,14 @@
     <div class="col-lg-7">
         <div class="about-descr">
 
-        <p class="p-heading">Hi! I am Saumya Bhatt</p>
-        <p class="separator">I love watching movies! My Dad, an avid movie lover himself has a cabinate full of DVDs. It had all the 
-            classics. Mybe that's what got me started into movies.</p> <p> Though I'm no movie critique, I like to lable myself as a cinephile
-            and can definitely support that statement by a having watched a wide range of movies - from as early as '12 Angry Men' to 'Marriage Story'! 
-        </p>
-        <p>This is just a small project wherein I can share with you guys some of the best that cinema has to offer and give my two cents on it.
-            Hope you like it :)
-        </p>
+            <p class="p-heading">Name's Bhatt. Saumya Bhatt</p>
+            <p class="separator">I love watching movies! My Dad, an avid movie lover himself has a cabinate full of DVDs. It had all the 
+                classics. Mybe that's what got me started into movies.</p> <p> Though I'm no movie critique, I like to lable myself as a cinephile
+                and can definitely support that statement by a having watched a wide range of movies - from as early as '12 Angry Men' to 'Marriage Story'! 
+            </p>
+            <p>This is just a small project wherein I can share with you guys some of the best that cinema has to offer and give my two cents on it.
+                Hope you like it :)
+            </p>
 
         </div>
 
@@ -36,43 +36,95 @@
 {% endblock heading %}
 
 {% block content %}
-    <div class="container">
-        <div class="section-title text-center">
-        <h2>Top Rated Reviews</h2>
-        <p>Although I try to keep up with all the latest movies and some of the classics, I physically cannot do so while giving equal 
-            amount of atention to studies! Hence I may have missed a few classics and the timeline of movies may not be in the correct order.
-            But I can assure you whatever movies I've written here are definitely a must watch! 
-        </p>
+
+    <!-- TOTAL NUMBER OF REVIEWS -->
+    <div class="container" style="margin-bottom: 50px;">
+        <div class="info_box">
+            <h1 class="tot_revs">{{ total_revs }}</h1>
+            <div class="info_card">
+                <p>Reviews written</p>
+                <h5>All ranging from 1957 to present</h5>
+            </div>
         </div>
     </div>
 
+
+    <!-- TOP RATED REVIEWS -->
+    <div class="container" style="margin-top: 150px;">
+        <div class="section-title text-center">
+            <h2>Top Rated Reviews</h2>
+            <p>
+                Although I try to keep up with all the latest movies and some of the classics, I physically cannot do so while giving equal 
+                amount of atention to studies! Hence I may have missed a few classics and the timeline of movies may not be in the correct order.
+                But I can assure you whatever movies I've written here are definitely a must watch! 
+            </p>
+        </div>
+    </div>
     <div class="container">
         <div class="journal-block">
+            <br><br>
+            <div class="row poster-grid">
+                {% for item in data %}
+                    {% if item.Overall|float() > 4.17 %}
+                            <div class="journal-info {{ item.Genre }}">
+                                <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{ item.Image }}"  class="img-responsive" alt="{{ item.Name }}"></a>
+                                <!-- <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a> -->
+                            </div> 
+                    {% endif %}
+                {% endfor %}      
+            </div>
+            <br>
+            <p style="text-align: center;">Click <a href="{{ url_for('review') }}" style="color: bisque;">here</a> to read more reviews!</p>
+        </div>
+    </div>
 
-        <br><br>
 
-        <div class="row poster-grid">
-
-            {% for item in data %}
-                {% if item.Overall|float() > 4 %}
+    <!-- LATEST REVIEWS -->
+    <div class="container" style="margin-top: 150px;">
+        <div class="section-title text-center">
+            <h2>Latest Reviews</h2>
+            <p>
+                Apart from the ones that are released in the current year, I not only write about those, but also of a few goldies that warrent a mention in this space. This may include some unheard gems to some fairly common ones - but wrote about it just because cannot exclude them from this golden lounge! Take a look at them below and do tell me what you think about it!
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="journal-block">
+            <br><br>
+                <div class="row poster-grid">
+                    {% for item in latest_revs %}
                         <div class="journal-info {{ item.Genre }}">
                             <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{ item.Image }}"  class="img-responsive" alt="{{ item.Name }}"></a>
                             <!-- <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a> -->
                         </div> 
-                {% endif %}
-            {% endfor %}      
-
-        </div>
-        <br>
-        <p style="text-align: center;">Click <a href="{{ url_for('review') }}" style="color: bisque;">here</a> to read more reviews!</p>
-
+                    {% endfor %}      
+                </div>
+            <br>
+            <p style="text-align: center;">Click <a href="{{ url_for('review') }}" style="color: bisque;">here</a> to read more reviews!</p>
         </div>
     </div>
 
-    <br><br><br>
-    <div class="container" id="SEARCH">
+
+    <!-- HALL OF FAME -->
+    <div class="container" style="margin-top: 150px;">
+        <div class="hall_of_fame">
+            <img class="HoF_image" src="{{ url_for('static', filename='images/Hof1.jpg') }}" alt="">
+            <div class="HoF_content">
+                <h1 class="HoF_heading">Hall of Fame</h1>
+                <p>
+                    There are films that leave their mark on you forever. Some do that by their exceptional storytelling, some do it by awe-inspiring cinematography while others quite simply are carried by their actors and actresses. This section is a testament to some of the finest actings that the world of cinema has been witnessed to. These exceptional people defined their characters for generations to come and made themselves immortal in its wake. Here's a small celebration for them.
+                </p>
+                <p style="color: bisque;">Coming Soon</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container" style="margin-top: 150px;" id="SEARCH">
         <h3>Search Movies</h3>
-        <p>Enter the name of the movie, and get it's plot summary, the actors and the year of release. Press Enter to get the details. Eg try 'Get Out'</p>
+        <p>
+            Enter the name of the movie, and get it's plot summary, the actors and the year of release. Press Enter to get the details. Eg try 'Get Out'
+        </p>
         <form action="{{ url_for('home') }}" class="search" method="post">
             {{movie_input.csrf_token}}
             {{movie_input.movie_name(class='form-control',placeholder='Enter Movie Name')}}

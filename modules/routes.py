@@ -28,8 +28,10 @@ def home():
         mail.send(msg)
         return render_template('success_msg.html')
 
+    total_revs = len(data)
+    latest_revs = data[-3:]
     temp_result = userInput('Get Out')
-    return render_template('index.html', data=data, movie_input=movie_inp,result=temp_result, contact_us=contact_us_home)
+    return render_template('index.html',total_revs=total_revs, latest_revs=latest_revs, data=data, movie_input=movie_inp,result=temp_result, contact_us=contact_us_home)
 
 @app.route('/reviews', methods=['GET','POST'])
 def review():
