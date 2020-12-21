@@ -23,7 +23,7 @@ def home():
             'Subject': contact_us_home.subject.data,
             'Message': contact_us_home.message.data
         }
-        result = firebase.post('/movies-by-the-sea-ca0b5-default-rtdb/Contact-Us',DB_entry)
+        result = firebase.post('/Contact-Us',DB_entry)
         print(result)
         return render_template('success_msg.html')
 
