@@ -43,7 +43,7 @@ def review():
             'Subject': contact_us_review.subject.data,
             'Message': contact_us_review.message.data
         }
-        result = firebase.post('/movies-by-the-sea-ca0b5-default-rtdb/Contact-Us',DB_entry)
+        result = firebase.post('/Contact-Us',DB_entry)
         print(result)
         return render_template('success_msg.html')
     return render_template('reviews.html', data=data, contact_us=contact_us_review)
