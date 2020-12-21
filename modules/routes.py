@@ -1,11 +1,12 @@
 from flask import Flask, render_template, url_for, request
-from flask_mail import Message, Mail
 from modules.movies import data, userInput
-from modules import app, mail
+from modules import app
 from modules import forms
+from firebase import firebase
 
-@app.route('/')
-@app.route('/home', methods=['GET','POST'])
+firebase = firebase.FirebaseApplication("https://movies-by-the-sea-ca0b5-default-rtdb.firebaseio.com/", None)
+
+@app.route('/', methods=['GET', 'POST'])
 def home():
 
     movie_inp = forms.MovieSearch()
@@ -16,17 +17,16 @@ def home():
         return render_template('index.html',data=data,result=get_details,movie_input=movie_inp, contact_us=contact_us_home)
     
     if contact_us_home.validate_on_submit():
-        msg = Message(contact_us_home.subject.data, sender='saumya.bhatt106@gmail.com', recipients=['saumya.bhatt106@gmail.com'])
-        msg.body = """
-        From: %s 
-        Email Address: <%s>
-        Subject: %s
-
-        Message: 
-        %s
-        """ % (contact_us_home.name.data, contact_us_home.email.data,contact_us_home.subject.data, contact_us_home.message.data)
-        mail.send(msg)
+        DB_entry = {
+            'Name': contact_us_home.name.data,
+            'Email': contact_us_home.email.data,
+            'Subject': contact_us_home.subject.data,
+            'Message': contact_us_home.message.data
+        }
+        result = firebase.post('/movies-by-the-sea-ca0b5-default-rtdb/Contact-Us',DB_entry)
+        print(result)
         return render_template('success_msg.html')
+
 
     total_revs = len(data)
     latest_revs = data[-3:]
@@ -37,16 +37,14 @@ def home():
 def review():
     contact_us_review = forms.ContactUs()
     if contact_us_review.validate_on_submit():
-        msg = Message(contact_us_review.subject.data, sender='saumi10600@gmail.com', recipients=['saumya.bhatt106@gmail.com'])
-        msg.body = """
-        From: %s 
-        Email Address: <%s>
-        Subject: %s
-
-        Message: 
-        %s
-        """ % (contact_us_review.name.data, contact_us_review.email.data,contact_us_review.subject.data, contact_us_review.message.data)
-        mail.send(msg)
+        DB_entry = {
+            'Name': contact_us_review.name.data,
+            'Email': contact_us_review.email.data,
+            'Subject': contact_us_review.subject.data,
+            'Message': contact_us_review.message.data
+        }
+        result = firebase.post('/movies-by-the-sea-ca0b5-default-rtdb/Contact-Us',DB_entry)
+        print(result)
         return render_template('success_msg.html')
     return render_template('reviews.html', data=data, contact_us=contact_us_review)
 
@@ -68,3 +66,20 @@ def page_not_found(e):
 @app.errorhandler(500)
 def server_error(e):
     return render_template('500.html')
+
+
+
+# from flask_mail import Message, Mail
+# from modules import app, mail
+    # if contact_us_home.validate_on_submit():
+    #     msg = Message(contact_us_home.subject.data, sender='saumya.bhatt106@gmail.com', recipients=['saumya.bhatt106@gmail.com'])
+    #     msg.body = """
+    #     From: %s 
+    #     Email Address: <%s>
+    #     Subject: %s
+
+    #     Message: 
+    #     %s
+    #     """ % (contact_us_home.name.data, contact_us_home.email.data,contact_us_home.subject.data, contact_us_home.message.data)
+    #     mail.send(msg)
+    #     return render_template('success_msg.html')
