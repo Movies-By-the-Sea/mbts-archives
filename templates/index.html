@@ -65,7 +65,7 @@
             <br><br>
             <div class="row poster-grid">
                 {% for item in data %}
-                    {% if item.Overall|float() > 4.17 %}
+                    {% if item.Overall|float() > 4.2 %}
                             <div class="journal-info {{ item.Genre }}">
                                 <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{ item.Image }}"  class="img-responsive" alt="{{ item.Name }}"></a>
                                 <!-- <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a> -->
