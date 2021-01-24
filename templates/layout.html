@@ -60,6 +60,13 @@
       .name1 {
             display: none;
       }
+      .sf_image_1 {
+        width: 40%; 
+        height:auto
+      }
+      .sf_image_2 {
+        display: none;
+      }
       @media only screen and (max-width: 600px) {
           .switch {
               display: flex;
@@ -100,6 +107,15 @@
           }
           .HoF_image {
             display: none;
+          }
+          .sf_image_1 {
+            display: none;
+          }
+          .sf_image_2 {
+            display: block;
+            margin-top: 20px;
+            width: 100%;
+            height: auto;
           }
       }
   </style>
@@ -144,6 +160,7 @@
         <ul class="nav-menu list-unstyled">
           <li><a href="{{ url_for('home') }}" class="smoothScroll">Home</a></li>
           <li><a href="{{ url_for('review') }}" class="smoothScroll">Reviews</a></li>
+          <li><a href="{{ url_for('short_films') }}" class="smoothScroll">Short Films</a></li>
           <li><a href="#contact" class="smoothScroll">Contact</a></li>
         </ul>
 

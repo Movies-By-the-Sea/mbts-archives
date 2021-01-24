@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request
-from modules.movies import data, userInput
+from modules.movies import data, data_sf, userInput
 from modules import app
 from modules import forms
 from firebase import firebase
@@ -31,7 +31,7 @@ def home():
     total_revs = len(data)
     latest_revs = data[-3:]
     temp_result = userInput('Get Out')
-    return render_template('index.html',total_revs=total_revs, latest_revs=latest_revs, data=data, movie_input=movie_inp,result=temp_result, contact_us=contact_us_home)
+    return render_template('index.html',total_revs=total_revs, latest_revs=latest_revs, data=data, movie_input=movie_inp,result=temp_result, contact_us=contact_us_home, new_sf=data_sf[-1])
 
 @app.route('/reviews', methods=['GET','POST'])
 def review():
@@ -47,6 +47,11 @@ def review():
         print(result)
         return render_template('success_msg.html')
     return render_template('reviews.html', data=data, contact_us=contact_us_review)
+
+
+@app.route('/short_films')
+def short_films():
+    return render_template('short_films.html', data=data_sf)
 
 
 @app.route('/<int:movie_id>')

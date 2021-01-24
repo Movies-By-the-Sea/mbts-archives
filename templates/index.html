@@ -79,6 +79,23 @@
     </div>
 
 
+    <!-- SHORT FILMS -->
+    <div class="container" style="margin-top: 150px;">
+        <div class="hall_of_fame">
+            <img class="sf_image_1" src="{{ new_sf['Poster'] }}" alt="">
+            <div class="HoF_content">
+                <h1 class="HoF_heading">Short Film of the Week</h1>
+                <img class="sf_image_2" src="{{ new_sf['Poster'] }}" alt="">
+                <p>Often overlooked, but performing their role to perfection, short films are as important as the comercial ones. 
+                    This is a small celebration to them. This week's short film is <span style="font-weight: bold;">{{ new_sf['Name'] }}</span>
+                </p>
+                <p><span style="font-weight: bold;">Synopsis :</span> {{ new_sf['Description'] }}</p>
+                <a href="{{ url_for('short_films') }}" style="color: bisque;">Discover more short films</a>
+            </div>
+        </div>
+    </div>
+
+
     <!-- LATEST REVIEWS -->
     <div class="container" style="margin-top: 150px;">
         <div class="section-title text-center">

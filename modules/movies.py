@@ -10,6 +10,7 @@ import requests
 from modules import db
 
 data = list(db.child('Reviews').get().val().values())
+data_sf = list(db.child('Short_Films').get().val().values())
 
 
 def userInput(query):
