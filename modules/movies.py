@@ -1,15 +1,15 @@
-import gspread
+# import gspread
+# from oauth2client.service_account import ServiceAccountCredentials
+# scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
+# creds = ServiceAccountCredentials.from_json_keyfile_name('./static/credentials.json',scope)
+# clients = gspread.authorize(creds)
+# sheet = clients.open('mbts_reviews').sheet1
+# data = sheet.get_all_records()
+
 import requests
+from modules import db
 
-from oauth2client.service_account import ServiceAccountCredentials
-
-scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
-
-creds = ServiceAccountCredentials.from_json_keyfile_name('./static/credentials.json',scope)
-clients = gspread.authorize(creds)
-
-sheet = clients.open('mbts_reviews').sheet1
-data = sheet.get_all_records()
+data = list(db.child('Reviews').get().val().values())
 
 
 def userInput(query):
