@@ -12,6 +12,7 @@ python-dotenv = "==0.15.0"
 wtforms = "==2.3.3"
 Flask = "==1.1.2"
 Pyrebase = "==3.0.27"
+gunicorn = "*"
 
 [dev-packages]
 
