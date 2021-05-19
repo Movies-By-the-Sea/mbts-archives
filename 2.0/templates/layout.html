@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165709631-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-165709631-1');
+  </script>
+
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Movies By The Sea</title>
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap/css/bootstrap.min.css') }}">
+
+  <!-- Libraries CSS Files -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='lib/ionicons/css/ionicons.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='lib/hover/hover.min.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Bitter&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+
+  <!-- Responsive css -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/web bar.png') }}">
+
+  <style>
+      #main-nav {
+          background: #242424;;
+      }
+      #about {
+          background: #2a3444;
+      }
+      .switch {
+          display: none;
+      }
+      .name1 {
+            display: none;
+      }
+      @media only screen and (max-width: 600px) {
+          .switch {
+              display: flex;
+          }
+          .home {
+            padding-top: 70px;
+          }
+          #about {
+            background-image: url("{{ url_for('static', filename='images/mobile.jpg') }}");
+            background-size: 100vh;
+            background-repeat: no-repeat;
+          }
+          #searchMovie {
+            width: 85vw;
+          }
+          .name1 {
+            display: block;
+          }
+          .name2 {
+            display: none;
+          }
+
+      }
+  </style>
+
+</head>
+
+<body onload="functionload()">
+  <div id="loader"></div>
+
+  <video autoplay muted loop id="myVideo">
+    {% block video %}
+    {% endblock video %}
+  </video>
+
+  <!-- start section navbar -->
+  <nav class="proprty" id="main-nav">
+    <div class="row">
+      <div class="container">
+
+        <div class="logo" style="display: flex;">
+          <div class="name1">
+            <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='images/logo.png') }}" style="width: 4em; height: auto;" alt="logo"></a>
+          </div>
+          <div class="name2">
+            <a href="{{ url_for('home') }}">
+              <h3 style="font-family: 'Mr Dafoe', cursive; color: bisque; margin: 10px 25px;" >Movies By the Sea</h3>
+            </a>
+          </div>
+        </div>
+
+        <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
+
+        <label class="switch">
+          <!--<input onclick="darkmode()" type="checkbox">
+          <span onclick="darkmode()" class="slider round"></span>-->
+          <button onclick="darkmode()" class="btn btn-dark">Night</button>
+          <button onclick="lightmode()" class="btn btn-dark" style="background-color: darkgray; padding-right: 17px; padding-left: 17px;">Day</button>
+          
+
+        </label>
+
+        <ul class="nav-menu list-unstyled">
+          <li><a href="index.html" class="smoothScroll">Home</a></li>
+          <li><a href="reviews.html" class="smoothScroll">Reviews</a></li>
+          <li><a href="#contact" class="smoothScroll">Contact</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <!-- End section navbar -->
+
+  <!-- start section header -->
+  <!--<div id="header" class="home">
+    <div class="container">
+      <div class="header-content">
+        <h1>Movies by the Sea</h1>
+        <p style="text-transform: none;">You only got one life. <br> Don't waste it by watching mediocre movies</p>
+      </div>
+    </div>
+  </div>-->
+  <!-- End section header -->
+
+  <!-- start section about us -->
+  <div id="about" class="paddsection">
+    <div class="container">
+
+      <div class="row justify-content-between">
+
+        {% block heading %}
+        {% endblock heading %}
+  
+      </div>
+    </div>
+  </div>
+  <!-- end section about us -->
+
+  <!-- start section journal -->
+  <div id="journal"  class="text-left paddsection">
+
+    {% block content %}
+    {% endblock content %} 
+
+      <!-- start sectoion contact -->
+      <div id="contact" class="paddsection">
+        <div class="container">
+          <div class="contact-block1">
+            <div class="row">
+
+              <div class="col-lg-6">
+                <div class="contact-contact">
+
+                  <h2 class="mb-30">GET IN TOUCH</h2>
+                  <p>Is there a movie I may have missed? Is there one you want me to review? Reach out to me today!</p>
+
+                  <ul class="contact-details">
+                    <li><span>BITS Pilani, K.K. Birla Goa Campus,</span></li>
+                    <li><span>Zuarinagar, Goa</span></li>
+                    <li><span>+91 7016667671</span></li>
+                    <li><span>saumya.bhatt106@gmail.com</span></li>
+                  </ul>
+
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <form action="" method="POST" name="MbtS_contact_us_form" data-netlify="true" id="contact_form" role="form" class="contactForm">
+                  <div class="row">
+
+                    <div id="sendmessage">Your message has been sent. Thank you!</div>
+                    <div id="errormessage"></div>
+
+                    <div class="col-lg-6">
+                      <div class="form-group contact-block1">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                        <div class="validation"></div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                        <div class="validation"></div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                        <div class="validation"></div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <textarea class="form-control" name="message" id="message" rows="12" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                        <div class="validation"></div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                      <input type="submit" class="btn btn-defeault btn-send" value="Send message">
+                    </div>
+
+
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- start section footer -->
+      <div id="footer" class="text-center">
+        <div class="container">
+          <div class="socials-media text-center">
+
+            <ul class="list-unstyled">
+              <li><a href="https://www.facebook.com/MoviesbytheSea/?notif_id=1582474957670199&notif_t=page_user_activity"><i class="ion-social-facebook"></i></a></li>
+              <li><a href="https://www.instagram.com/movies.by.the.sea/"><i class="ion-social-instagram"></i></a></li>
+              <li><a href="https://www.linkedin.com/in/saumya-bhatt-2000/"><i class="ion-social-linkedin"></i></a></li>
+            </ul>
+
+          </div>
+
+
+          <div class="credits">
+            Designed by Saumya Bhatt</a><br> Please contact to get poster credits
+          </div>
+
+        </div>
+      </div>
+      <!-- End section footer -->
+
+  </div>
+  <!-- End section journal -->
+
+  <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+  
+  <!-- JavaScript Libraries -->
+  <script src="../static/lib/jquery/jquery.min.js"></script>
+  <script src="../static/lib/jquery/jquery-migrate.min.js"></script>
+  <script src="../static/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="../static/js/main.js"></script>
+  <script src="../static/js/script.js"></script>
+  <script src="../static/js/script2.js"></script>
+
+</body>
+</html>

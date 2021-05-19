@@ -1,0 +1,154 @@
+
+
+body {
+  background-color: wheat;
+}
+.dead_poet {
+  display: flex;
+  margin-top: 100px;
+  background-color: bisque;
+  padding: 30px;
+}
+.mobile_quote {
+  display: none;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.2em;
+  margin-top: 40px;
+}
+.williams {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.robbie {
+  width: 170px;
+  height: 170px;
+}
+.header h1 {
+  font-family: 'Playfair Display', serif;
+}
+.header p {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.5em;
+}
+.inst {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.3em;
+  padding: 20px;
+}
+.line {
+  border: 1px solid goldenrod;
+  margin: 50px auto;
+}
+.navbar {
+  padding: 30px;
+  background-color: #242424;
+  overflow: hidden;
+  z-index: 99999;
+}
+.nav_heading {
+  font-family: 'Mr Dafoe', cursive; 
+  color: bisque; 
+  margin: 20px 35px;
+}
+.nav_image {
+  display: none;
+}
+.nav-link {
+  color: bisque;
+}
+.content-title {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+.modal_container {
+  display: flex;
+}
+.modal-trailer {
+  background-color: black;
+}
+.portfolio-link {
+  background-color: royalblue;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  float: right;
+}
+.movie_link {
+  height: 2.5em;
+  width: auto;
+  float: left;
+  margin-right: 5px;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.title {
+  font-family: 'Times New Roman', Times, serif;
+}
+.review {
+  font-family: Georgia,Times New Roman,serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  color: #333;
+  transition: .5s;
+}
+.card {
+  overflow: hidden;
+  background-color: navajowhite;
+}
+.card_image :hover {
+  transition: .5s;
+  transform: scale(1.1);
+  filter: opacity(0.8)
+}
+.external_card {
+  border: none;
+  background-color: wheat;
+}
+.modal-content {
+  background-color: moccasin;
+}
+.fa {
+  height: 20px;
+  width: 20px;
+  padding: 30px 20px;
+  color: bisque;
+}
+.footer {
+  font-size: 1em;
+  font-weight: 100;
+  color: bisque;
+}
+.ending_line {
+  margin: 30px auto;
+  text-align: center;
+  opacity: 70%;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+  .nav_image {
+    display: block;
+    width: 1.2em;
+    height: 1.2em;
+  }
+  .nav_heading {
+    display: none;
+  }
+  .modal_container {
+    display: inline;
+  }
+  .williams {
+    display: none;
+  }
+  .mobile_quote {
+    display: block;
+  }
+
+}
