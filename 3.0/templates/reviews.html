@@ -1,0 +1,198 @@
+{% extends 'layout.html' %}
+
+{% block video %}
+<source src="{{ url_for('static', filename='video.mp4') }}" type="video/mp4">
+{% endblock video %}
+
+{% block heading %}
+<div class="col-lg-12 home">
+    <p style="text-transform: none;">"Medicine, law, business, engineering, these are noble pursuits<br> and necessary to sustain life. But </p>
+    <h1>poetry, beauty, romance, love,</h1>
+    <p style="text-transform: none;"> these are what we stay alive for."</p><br>
+    <br>
+    <p style="text-transform: none;">- Dead Poet's Society</p>
+  </div>
+{% endblock heading %}
+
+{% block content %}
+    <div class="container" style="padding-top: 40px;">
+        <div class="section-title text-center">
+            <h2>Reviews</h2>
+            <p>
+                Enjoy this curated list of films and cinemas ranging from hollywood to bollywood and a few foreign films as well; all belonging to the gold standard. Rating is given out of 5 and includes parameters such as acting, storyline, execution and profundity. Click on the posters to get read the reviews and the ratings. The stickers <img style="height: 30px; width: auto;" src="{{ url_for('static',filename='images/netflix.svg') }}" alt="availabe on netflix"> and <img style="height: 30px; width: auto;" src="{{ url_for('static', filename='images/prime.svg') }}" alt="availabe on Amazon Prime"> indicate whether the movie is available on Netflix or on Amazon Prime. Click on Links to watch the movie on third party apps for free! Don't worry, they are tested :)
+            </p>
+            <br>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="journal-block">
+
+            <div class="filter_options" style="border-radius: 10px; padding: 30px 40px; background: rgba(0,0,0,0.7); margin-bottom: 80px;">
+
+                <h3>Search by Filter</h3>
+
+                <p>Filter by Genre</p>
+                <div id="myBtnContainer">
+                    <button class="btn" onclick="filterSelection('all')">all</button>
+                    <button class="btn" onclick="filterSelection('Dark')">Dark</button>
+                    <button class="btn" onclick="filterSelection('Horror')">Horror</button>
+                    <button class="btn" onclick="filterSelection('Thriller')">Thriller</button>
+                    <button class="btn" onclick="filterSelection('Crime')">Crime</button>
+                    <button class="btn" onclick="filterSelection('Animated')">Animated</button>
+                    <button class="btn" onclick="filterSelection('Drama')">Drama</button>
+                    <button class="btn" onclick="filterSelection('Action')">Action</button>
+                    <button class="btn" onclick="filterSelection('Comedy')">Comedy</button>
+                    <button class="btn" onclick="filterSelection('Lighthearted')">Lighthearted</button>
+                    <button class="btn" onclick="filterSelection('Fantasy')">Fantasy</button>
+                    <button class="btn" onclick="filterSelection('Romance')">Romance</button>
+                    <button class="btn" onclick="filterSelection('International')">International</button>
+                    <button class="btn" onclick="filterSelection('True Story')">True Story</button>
+                    <button class="btn" onclick="filterSelection('Sci-Fi')">Sci-Fi</button>
+                    <button class="btn" onclick="filterSelection('Meta')">Meta</button>
+                </div>
+
+                <br>
+                <p>Filter by Time period</p>
+                <div id="myBtnContainer">
+                    <button class="btn" onclick="filterSelection('2010_film')">2010 and above</button>
+                    <button class="btn" onclick="filterSelection('2000_film')">early 2000</button>
+                    <button class="btn" onclick="filterSelection('1990_film')">'90s kids</button>
+                    <button class="btn" onclick="filterSelection('1970_film')">1970s - 80s</button>
+                    <button class="btn" onclick="filterSelection('old_film')">before 1970s</button>
+                </div>
+
+                <br>
+                <p>Filter by availability on Netflix or on Amazon Prime</p>
+                <div id="myBtnContainer">
+                    <button class="btn" style="background-color: #d81f26;" onclick="filterSelection('1_Netflix')">Netflix</button>
+                    <button class="btn" style="background-color: #00a8e1;" onclick="filterSelection('1_Prime')">Amazon Prime</button>
+                </div>
+
+            </div>
+
+
+            <div class="row poster-grid">
+                {% for item in data %}
+                    {% if item.Year >2010 %}
+                        <div class="journal-info 2010_film {{ item.Genre1  }} {{ item.Genre2 }} {{ item.Netflix }}_Netflix {{ item.Prime }}_Prime">
+                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a>  2 TIMES BACK VERSION -->
+                            <!-- <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a> 1 TIME BACK VERSION-->
+                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{ item.Image }}"  class="img-responsive" alt="{{ item.Name }}"></a>
+                        </div>
+                    {% elif item.Year >2000 %}
+                        <div class="journal-info 2000_film {{ item.Genre1  }} {{ item.Genre2 }} {{ item.Netflix }}_Netflix {{ item.Prime }}_Prime">
+                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a> 2 TIMES BACK VERSION -->
+                            <!-- <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a> 1 TIME BACK VERSION -->
+                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{ item.Image }}"  class="img-responsive" alt="{{ item.Name }}"></a>
+                        </div>
+                    {% elif item.Year >1990 %}
+                        <div class="journal-info 1990_film {{ item.Genre1  }} {{ item.Genre2 }} {{ item.Netflix }}_Netflix {{ item.Prime }}_Prime">
+                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a> 2 TIMES BACK VERSION -->
+                            <!-- <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a> 1 TIME BACK VERSION -->
+                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{ item.Image }}"  class="img-responsive" alt="{{ item.Name }}"></a>
+                        </div>
+                    {% elif item.Year >1970 %}
+                        <div class="journal-info 1970_film {{ item.Genre1  }} {{ item.Genre2 }} {{ item.Netflix }}_Netflix {{ item.Prime }}_Prime">
+                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a> 2 TIMES BACK VERSION -->
+                            <!-- <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a> 1 TIME BACK VERSION -->
+                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{ item.Image }}"  class="img-responsive" alt="{{ item.Name }}"></a>
+                        </div>
+                    {% else %}
+                        <div class="journal-info old_film {{ item.Genre1  }} {{ item.Genre2 }} {{ item.Netflix }}_Netflix {{ item.Prime }}_Prime">
+                            <!--<a class="portfolio-link" data-toggle="modal" href="#{{ item.ID }}"><img src="../static/posters/{{ item.Poster }}"  class="img-responsive" alt="{{ item.Name }}"></a> 2 TIMES BACK VERSION -->
+                            <!-- <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{  url_for('static', filename='Movies/' + item.Poster) }}"  class="img-responsive" alt="{{ item.Name }}"></a> 1 TIME BACK VERSION -->
+                            <a class="portfolio-link" href="{{ url_for('get_review',movie_id=item.ID) }}"><img src="{{ item.Image }}"  class="img-responsive" alt="{{ item.Name }}"></a>
+                        </div>                    
+                    {% endif %} 
+
+                    <!--<div class="portfolio-modal modal fade" id="{{ item.ID }}"  role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="close-modal" style="background-color: #242424;" data-dismiss="modal">
+                                <div class="lr">
+                                <div class="rl" style="cursor: pointer; float: right;"><img src="../static/images/close.png" style="padding-right: 20px; padding-top: 15px;" alt=""></div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                <div style="background-color: #242424;">
+                                    <div class="modal-body">
+                                    <h2 class="text" style="text-align: center; font-family: 'Bitter', serif;">{{ item.Name }}</h2>
+                                    <p class="item-intro text-muted" style="text-align: center;">Average Rating: <b>{{ item.Overall }}</b></p>
+                                    <div>
+                                        <img class="img-fluid d-block mx-auto" style="height: 400px; width: auto;" src="../static/posters/{{ item.Poster }}" alt="{{ item.Name }}">
+                                        <iframe width="100%" height="315" src="{{ item.Trailer }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <p style="font-weight: bold;">Genre : 
+                                            <span style="font-size: 1em;" class="badge badge-dark">{{item.Genre1}}</span>
+                                            <span style="font-size: 1em;" class="badge badge-dark">{{item.Genre2}}</span>
+                                        </p>
+                                        <p>{{ item.Review }}</p>
+                                    </div>
+                                    <br><br>
+                                        <div style="display: flexbox;">
+                                        <table style="width:100%;">
+                                            <tr>
+                                            <td>Directed By:</td>
+                                            <td><b>{{ item.Director }}</b></td>
+                                            </tr>
+                                            <tr>
+                                            <td>Year:</td>
+                                            <td><b>{{ item.Year }}</b></td>
+                                            </tr>
+                                        <tr>
+                                            <td>Actor/Actress:</td>
+                                            <td><b>{{ item.Lead }}</b></td>
+                                            </tr>
+                                            <tr>
+                                            <td>Overall Rating:</td>
+                                            <td><b>{{ item.Overall }}</b></td>
+                                            </tr>
+                                        </table><br><br>
+                                        <table style="width: 50%;">
+                                            <tr>
+                                            <td>Acting:</td>
+                                            <td><b>{{ item.Acting }}</b></td>
+                                            </tr>
+                                            <tr>
+                                            <td>Story:</td>
+                                            <td><b>{{ item.Story }}</b></td>
+                                            </tr>
+                                        <tr>
+                                            <td>Cinematography:</td>
+                                            <td><b>{{ item.Execution }}</b></td>
+                                            </tr>
+                                            <tr>
+                                            <td>Profundity:</td>
+                                            <td><b>{{ item.Profundity }}</b></td>
+                                            </tr>
+                                        </table>
+                                        </div>
+                                        <br>
+                                        <i style="display: flex;">
+                                            <a href= "{{ item['Links'] }}">
+                                                <img src="../static/images/link.png" style="height:3em; margin:0 5px; width:auto;" alt="Link">
+                                            </a>
+                                            {% if item.Netflix == '1' %}
+                                                <img src="../static/images/netflix.svg" alt="Availabe on Netflix">
+                                            {% endif %}
+                                            {% if item.Prime == '1' %}
+                                                <img src="../static/images/prime.svg" alt="Availabe on Prime">
+                                            {% endif %}
+                                        </i>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div> -->
+                {% endfor %}
+            </div>
+
+            <br>
+            <p style="text-align: center;">Will keep on adding new movies as I watch!</p>
+
+        </div>
+    </div>
+{% endblock content %}

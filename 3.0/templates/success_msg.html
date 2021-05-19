@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies By the Sea</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/web bar.png') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ff9aa2;
+            color: cornsilk;
+            text-align: center;
+            font-family: 'Prata', serif;
+        }
+        .container {
+            padding: 20px;
+            border: 10px solid whitesmoke;
+        }
+        .main_container {
+            padding: 10px;
+            border: 10px solid whitesmoke;
+            margin-left: 33%;
+            margin-right: 33%;
+            margin-top: 5%;
+        }
+        @media only screen and (max-width: 600px) {
+            body {
+                padding-top: 10px;
+            }
+            .main_container {
+                margin: auto;
+                height: 90vh;
+            }
+            .container {
+                height: 82vh;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="main_container">
+        <div class="container">
+            <img style="height: 300px; width: 100%;" src="{{ url_for('static', filename='images/message.gif') }}" alt="">
+            <h1 style="font-family: 'Prata', serif;">Your Message has been sent!</h1>
+            <p>Thanks for getting in touch! Zero and M. Gustav will be delivering your message shortly!</p>
+            <a style="color:moccasin; text-decoration: none;" href="{{ url_for('home') }}">Get back to home</a>
+        </div>
+    </div>
+</body>
+</html>

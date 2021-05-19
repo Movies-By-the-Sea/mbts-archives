@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "==2.25.1"
+firebase = "==3.0.1"
+firebase-admin = "==4.5.1"
+flask-wtf = "==0.14.3"
+python-dotenv = "==0.15.0"
+wtforms = "==2.3.3"
+Flask = "==1.1.2"
+Pyrebase = "==3.0.27"
+gunicorn = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

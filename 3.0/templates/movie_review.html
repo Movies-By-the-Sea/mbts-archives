@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ review.Name }}</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap/css/bootstrap.min.css') }}">
+
+  <!-- Libraries CSS Files -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='lib/ionicons/css/ionicons.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='lib/hover/hover.min.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Bitter&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+
+  <!-- Responsive css -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/mbts.png') }}">
+
+    <style>
+        body {
+            background-color: #242424;
+            padding: 10px;
+        }
+        :root {
+        --star-size: 25px;
+        --star-color: #343434;
+        --star-background: whitesmoke;
+        }
+
+        .Stars {
+            --percent: calc(var(--rating) / 5 * 100%);
+            
+            display: inline-block;
+            font-size: var(--star-size);
+            font-family: Times; // make sure ★ appears correctly
+            line-height: 1;
+        }
+        .Stars:before {
+            content: '★★★★★';
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @media only screen and (max-width:600px) {  
+            .review_page {
+                display: inline-block;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+
+
+
+  <div class="container">
+  <div class="review_page">
+          <div class="image_block">
+            <!-- <img src="{{  url_for('static', filename='Movies/' + review.Poster) }}"  class="review_img-responsive" alt="{{ review.Name }}"><br> -->
+            <img src="{{ review.Image }}"  class="review_img-responsive" alt="{{ review.Name }}"><br>
+
+            <p class="rating">mbts score : <span style="font-size: 1.6em;font-weight: bold;">{{ percent }}%</span></p>
+
+            <p>
+                <a href="{{ review.Trailer }}" target="_blank" style="color: bisque;">Trailer</a>
+                <a href="{{ review.Links }}" target="_blank" style="color: bisque; margin-left: 10px;">Links</a>
+                <a style="color: burlywood; margin-left: 10px;" href="{{ url_for('home') }}">Home</a>
+                <a style="color: burlywood; margin-left: 10px;" href="{{ url_for('review') }}">Reviews</a>
+            </p>
+          </div>
+          <br>
+          <div class="review_block">
+            <h1 style="font-family: 'Playfair Display', serif;">{{ review.Name }}</h1>
+            <p style="margin: 20px 0px">Genre : {{ review.Genre1 }}, {{ review.Genre2 }}</p>
+            <p>{{ review.Review }}</p>
+            <div style="display: flexbox;">
+                <table style="width:100%;">
+                    <tr>
+                        <td>Directed By:</td>
+                        <td><b>{{ review.Director }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Year:</td>
+                        <td><b>{{ review.Year }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Actor/Actress:</td>
+                        <td><b>{{ review.Lead }}</b></td>
+                    </tr>
+                </table><br>
+                <table style="width: 100%;">
+                    <tr>
+                        <td>Acting:</td>
+                        <td>
+                            <div class="Stars" style="--rating: {{ review.Acting }};" aria-label="{{ review.Acting }} out of 5"></div>
+                            <b> - {{ review.Acting }} </b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Story:</td>
+                        <td>
+                            <div class="Stars" style="--rating: {{ review.Story }};" aria-label="{{ review.Story }} out of 5"></div>
+                            <b> - {{ review.Story }} </b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Execution:</td>
+                        <td>
+                            <div class="Stars" style="--rating: {{ review.Execution }};" aria-label="{{ review.Execution }} out of 5"></div>
+                            <b> - {{ review.Execution }} </b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Profundity:</td>
+                        <td>
+                            <div class="Stars" style="--rating: {{ review.Profundity }};" aria-label="{{ review.Profundity }} out of 5"></div>
+                            <b> - {{ review.Profundity }} </b>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            {% if review.Netflix %}
+                <img src="{{ url_for('static',filename='images/netflix.svg') }}" class="ott_platform" alt="Available on Netflix">
+            {% endif %}
+            {% if review.Prime %}
+                <img src="{{ url_for('static',filename='images/prime.svg') }}" class="ott_platform" alt="Available on Prime">
+            {% endif %}
+          </div>
+      </div>
+  </div>
+
+
+
+
+</body>
+</html>
