@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+  <div class="content">
+      <div class="row">
+          <div class="col-md-12">
+
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="card home-card">
+                  <div class="card-body">
+                    <h6 class="card-title">Infographics</h6>
+                    <br>
+                    <ul class="list-group" style="width: 100%;">
+                      <li class="list-group-item">{{ info['totalReviews'] }} reviews written</li>
+                      <li class="list-group-item">{{ info['instagram'] }} reviews on Instagram</li>
+                      {% if info['totalMessages'] == 0 %}
+                        <li class="list-group-item">No new messages</li>
+                      {% else %}
+                      <li class="list-group-item">{{ info['totalMessages'] }} new messages</li>
+                      {% endif %}                      
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="card home-card">
+                  <div class="card-body">
+                    <h3 class="card-title">Welcome {{ user }}</h3>
+                    <p class="card-text">This is the master panel to upload, update and view all the reviews written for the blog site Movies By the Sea.</p>
+                    <p>Uploaded reviews are updated to the database in realtime. Some information is gathered automiatically via API. To modify them, go to the firebase realtime DB to update them manually.</p>
+                    <p class="card-text"><small class="text-muted">All reviews updated to website.</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- <div class="card mb-3" style="width: 100%;">
+              <div class="row g-0">
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Welcome {{ user }}</h5>
+                    <p class="card-text">This is the master panel to upload, update and view all the reviews written for the blog site Movies By the Sea. Head over to the sidebar to view more.</p>
+                    <p class="card-text"><small class="text-muted">All reviews updated to website.</small></p>
+                    <ul class="list-group" style="width: 50%;">
+                      <li class="list-group-item">{{ info['totalReviews'] }} reviews written</li>
+                      <li class="list-group-item">{{ info['instagram'] }} reviews on Instagram</li>
+                      {% if info['totalMessages'] == 0 %}
+                        <li class="list-group-item">No new messages</li>
+                      {% else %}
+                      <li class="list-group-item">{{ info['totalMessages'] }} new messages</li>
+                      {% endif %}                      
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+          </div>
+      </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card card-nav-tabs">
+          <h4 class="card-header card-header-info">Messages from website</h4>
+          <div class="card-body">
+            <h4 class="card-title">Total messages : <span style="font-weight: bold;">{{ total }}</span></h4>
+            <p class="card-text">
+              List of messages sent from the contact-us page at the website. Refresh the page periodically to view any latest messages. The messages are displayed in the order of when they were uploaded.
+            </p>
+
+            <br><br>
+
+            {% if no_msg %}
+
+            <div class="card card-nav-tabs text-center">
+              <div class="card-body">
+                <h4 class="card-title">No new messages</h4>
+                <p class="card-text">Refresh the page or comeback and try again later;</p>
+              </div>
+            </div>
+
+            {% else %}
+
+                {% for message in messages %}
+
+                <div class="card">
+                  <div class="card-body">
+                    <h5>{{ message.Subject }}</h5>
+                    <h6>{{ message.Name }}</h6>
+                    <p>{{ message.Message }}</p>
+                    <a href="mailto:{{ message.Email }}" class="card-link">{{ message.Email }}</a>
+                    <a href="{{ url_for('delete_msg', message_id=message['Subject']) }}" class="card-link"  onclick="loading()">Delete Message</a>
+                  </div>
+                </div>
+
+              {% endfor %}
+          
+            {% endif %}
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

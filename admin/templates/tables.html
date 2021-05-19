@@ -1,0 +1,120 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="title">Movie Review List</h2>
+            <small class="text-muted">Currently uploaded list of reviews with their details</small>
+            <p>Total number of reviews written : 
+              <spam class="title">{{ total }}</>
+            </p>
+            <br>
+            <p>All ratings are out of 5. The superscripts [1] and [2] provide the links to Trailer and free viewing links to that film. The icons next to the movie name indictates the film's availabilty on Netflix or on Amazon Prime.</p>
+            <p>Films, whose ID have a purple background means, they have been updated to Instagram.</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Review</th>
+                  <th>information</th>
+                  <th>Ratings</th>
+                  <th>Image</th>
+                </thead>
+                <tbody class="tables">
+                  {% for item in reviews %}
+                    <tr>
+                      {% if item['Instagram'] %}
+                        <td class="insta">{{ item['ID'] }}</td>
+                      {% else %}
+                        <td>{{ item['ID'] }}</td>
+                      {% endif %}
+                      <td>{{ item['Name'] }} 
+                        <sup><a href="{{ item['Trailer'] }}" target="_blank">[1]</a></sup>
+                        <sup><a href="{{ item['Links'] }}" target="_blank">[2]</a></sup>
+                        <br>
+                        {% if item['Netflix'] %}
+                            <img src="{{ url_for('static',filename='img/netflix.svg') }}" style="width: 25px; height:auto" alt="Available on Netflix">
+                        {% endif %}
+                        {% if item['Prime'] %}
+                            <img src="{{ url_for('static',filename='img/prime.svg') }}" style="width: 25px; height:auto" alt="Available on Prime">
+                        {% endif %}
+                        <br><br>
+                        <div class="operations">
+                          <a href="{{ url_for('delete', review_id=item['ID']) }}" onclick="loading()">Delete</a>
+                          <a href="{{ url_for('update', review_id=item['ID']) }}" onclick="loading()">Edit</a>
+                        </div>
+                        <br>
+                        {% if item['Instagram'] %}
+                          <div></div>
+                        {% else %}
+                          <a href="{{ url_for('IG_update', review_id=item['ID']) }}" onclick="loading()">Add to IG</a>
+                        {% endif %}
+                      </td>
+                      <td>{{ item['Review'] }}</td>
+                      <td>
+                        <table>
+                          <tbody>
+                            <td>Genre</td>
+                            <td>{{ item['Genre1'] }}, {{ item['Genre2'] }}</td>
+                          </tbody>
+                          <tbody>
+                            <td>Year</td>
+                            <td>{{ item['Year'] }}</td>
+                          </tbody>
+                          <tbody>
+                            <td>Director</td>
+                            <td>{{ item['Director'] }}</td>
+                          </tbody>
+                          <tbody>
+                            <td>Lead</td>
+                            <td>{{ item['Lead'] }}</td>
+                          </tbody>
+                          <tbody>
+                        </table>
+                      </td>
+                      <td>
+                        <table>
+                          <tbody>
+                            <td>Acting</td>
+                            <td>{{ item['Acting'] }}</td>
+                          </tbody>
+                          <tbody>
+                            <td>Story</td>
+                            <td>{{ item['Story'] }}</td>
+                          </tbody>
+                          <tbody>
+                            <td>Execution</td>
+                            <td>{{ item['Execution'] }}</td>
+                          </tbody>
+                          <tbody>
+                            <td>Profundity</td>
+                            <td>{{ item['Profundity'] }}</td>
+                          </tbody>
+                          <tbody>
+                            <td>Overall</td>
+                            <td>{{ item['Overall'] }}</td>
+                          </tbody>
+                        </table>
+                      </td>
+                      <td>
+                        <img class="posters" src="{{ item['Image'] }}"></img>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

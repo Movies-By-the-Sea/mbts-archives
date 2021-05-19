@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='img/apple-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/mbts.png') }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+      MBtS | Login
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    
+    <!-- CSS Files -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/now-ui-dashboard.min.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet" />
+
+  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        body {
+            background-color: #242424;
+        }
+    </style>
+
+</head>
+<body>
+
+    {% block content %}
+    {% endblock %}
+    
+      <!--   Core JS Files   -->
+  <script src="{{ url_for('static', filename='js/core/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/core/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/core/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+
+
+  <!--  Notifications Plugin    -->
+  <script src="{{ url_for('static', filename='js/plugins/bootstrap-notify.js') }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+</body>
+</html>

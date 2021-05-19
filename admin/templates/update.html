@@ -1,0 +1,139 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card card-nav-tabs">
+            <h2 class="title card-header">Editor Panel</h2>
+            <div class="card-body">
+
+                <h4 class="card-title">Movies By the Sea</h4>
+                <p class="card-text">Updating movie review ID : {{ update_id }}</p>
+
+                <form action="{{ url_for('update', review_id=review_id) }}" method="post" enctype="multipart/form-data">
+
+                  {{ form.csrf_token }}
+
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="exampleInputEmail1">Movie Name</label>
+                            {{ form.name(class='form-control', placeholder='Enter Movie Name', value=review['Name']) }}
+                            <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Movie Name"> -->
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputEmail1">Genre 1</label>
+                            {{ form.genre1(class='form-control', placeholder='Primary', value=review['Genre1']) }}
+                            <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Primary"> -->
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputEmail1">Genre 2</label>
+                            {{ form.genre2(class='form-control', placeholder='Secondary', value=review['Genre2']) }}
+                            <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Secondary"> -->
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="movieDirector">Director</label>
+                            {{ form.director(class='form-control', placeholder="Director's Name", value=review['Director']) }}
+                            <!-- <input type="text" name="" id="" placeholder="Director's Name" class="form-control"> -->
+                        </div>
+                        <div class="col">
+                            <br>
+                            <label for="movieDirector">Available on :</label>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                  <p>Netflix</p>
+                                    {% if review['Netflix'] == '1' %}
+                                        {{ form.netflix(class='form-check-input', type='checkbox', id="inlineCheckbox1", checked='true') }}
+                                    {% else %}
+                                        {{ form.netflix(class='form-check-input', type='checkbox', id="inlineCheckbox1") }}
+                                    {% endif %}
+                                  <!-- <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">Netflix -->
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                  <p>Amazon Prime</p>
+                                    {% if review['Prime'] == '1' %}
+                                        {{ form.prime(class='form-check-input', type='checkbox', id="inlineCheckbox1", checked=true) }}
+                                    {% else %}
+                                        {{ form.prime(class='form-check-input', type='checkbox', id="inlineCheckbox1", checked=false) }}
+                                    {% endif %}
+                                  <!-- <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">Amazon Prime -->
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Write your review here</label>
+                            {{ form.review(class='form-control', rows='3', id='REVIEW') }}
+                            <script> 
+                                var textarea = document.getElementById('REVIEW'); 
+                                textarea.innerHTML = "{{ review['Review'] }}" 
+                            </script>
+                            <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> -->
+                        </div>
+                        <br>
+                        <p>Give the movie Ratings here</p>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="movieDirector">Acting</label>
+                                {{ form.acting(class='form-control', placeholder='Out of 5', value=review['Acting']) }}
+                                <!-- <input type="text" name="" id="" placeholder="Out of 5" class="form-control"> -->
+                            </div>
+                            <div class="col">
+                                <label for="movieDirector">Story</label>
+                                {{ form.story(class='form-control', placeholder='Out of 5', value=review['Story']) }}
+                                <!-- <input type="text" name="" id="" placeholder="Out of 5" class="form-control"> -->
+                            </div>
+                            <div class="col">
+                                <label for="movieDirector">Execution</label>
+                                {{ form.execution(class='form-control', placeholder='Out of 5', value=review['Execution']) }}
+                                <!-- <input type="text" name="" id="" placeholder="Out of 5" class="form-control"> -->
+                            </div>
+                            <div class="col">
+                                <label for="movieDirector">Profundity</label>
+                                {{ form.profundity(class='form-control', placeholder='Out of 5', value=review['Profundity']) }}
+                                <!-- <input type="text" name="" id="" placeholder="Out of 5" class="form-control"> -->
+                            </div>
+                            <div class="col">
+                                <label for="movieDirector">Overall</label>
+                                {{ form.overall(class='form-control', placeholder='Out of 5', value=review['Overall']) }}
+                                <!-- <input type="text" name="" id="" placeholder="Out of 5" class="form-control"> -->
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="movieDirector">Link to Movie</label>
+                                {{ form.link(class='form-control', placeholder='Enter the movie link here', value=review['Links']) }}
+                                <!-- <input type="text" name="" id="" placeholder="Enter the movie link here" class="form-control"> -->
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">Upload poster for the film</label>
+                                {{ form.image(class='form-control') }}
+                                <!-- <input type="file" class="form-control" name="" id=""> -->
+                            </div>
+                        </div>
+                        <br>
+                        {{ form.submit(class='btn btn-primary', value='Update Review', onclick="loading()") }}
+                        <a href="{{ url_for('table') }}" class="btn btn-info">Cancel</a>
+                        <!-- <button type="submit" class="btn btn-primary">Submit Review</button> -->
+                    </div>
+                  </form>
+
+            </div>                
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

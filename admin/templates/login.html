@@ -1,0 +1,47 @@
+{% extends 'login_layout.html' %}
+
+{% block content %}
+
+  <div class="card login mb-3" style="background-color: #242424;">
+    <div class="row g-0">
+      <div class="col-md-4 login_image">
+        <img src="{{ url_for('static', filename='img/login.png') }}" alt="...">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    
+                <br>
+                <div class="alert login_alert" role="alert">
+                  {{ message }}
+                </div>
+
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+      </div>
+      <div class="col-md-8" style="padding: 0px 15px;">
+        <div class="card-body">
+            <h2 class="card-title">Welcome.</h2>
+            <p class="card-text">
+                <small class="text-muted">This is the admin panel of Movies By the Sea. Type in your credentials to get started</small>
+            </p>
+
+            <form action="{{ url_for('login') }}" method="post">
+                {{ form.csrf_token }}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    {{ form.email(type='email', class='form-control') }}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    {{ form.password(type='password', class='form-control') }}
+                </div>
+                {{ form.submit(type='submit', class='btn btn-primary', value='Login to Admin Panel') }}
+            </form>
+              
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

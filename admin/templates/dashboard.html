@@ -1,0 +1,111 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card card-nav-tabs">
+            <h2 class="title card-header">Editor Panel</h2>
+            <div class="card-body">
+
+                <h4 class="card-title">Movies By the Sea</h4>
+                <p class="card-text">Write the movie review in the given below spaces. Make sure to include all the nescessary information.</p>
+
+                <form action="{{ url_for('entry') }}" method="post" enctype="multipart/form-data">
+
+                  {{ form.csrf_token }}
+
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="exampleInputEmail1">Movie Name</label>
+                            {{ form.name(class='form-control', placeholder='Enter Movie Name') }}
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputEmail1">Genre 1</label>
+                            {{ form.genre1(class='form-control', placeholder='Primary') }}
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputEmail1">Genre 2</label>
+                            {{ form.genre2(class='form-control', placeholder='Secondary') }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="movieDirector">Director</label>
+                            {{ form.director(class='form-control', placeholder="Director's Name") }}
+                        </div>
+                        <div class="col">
+                            <br>
+                            <label for="movieDirector">Available on :</label>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                  <p>Netflix</p>
+                                  {{ form.netflix(class='form-check-input', type='checkbox', id="inlineCheckbox1") }}
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                  <p>Amazon Prime</p>
+                                  {{ form.prime(class='form-check-input', type='checkbox', id="inlineCheckbox1") }}
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Write your review here</label>
+                            {{ form.review(class='form-control', rows='3') }}
+                        </div>
+                        <br>
+                        <p>Give the movie Ratings here</p>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="movieDirector">Acting</label>
+                                {{ form.acting(class='form-control', placeholder='Out of 5') }}
+                            </div>
+                            <div class="col">
+                                <label for="movieDirector">Story</label>
+                                {{ form.story(class='form-control', placeholder='Out of 5') }}
+                            </div>
+                            <div class="col">
+                                <label for="movieDirector">Execution</label>
+                                {{ form.execution(class='form-control', placeholder='Out of 5') }}
+                            </div>
+                            <div class="col">
+                                <label for="movieDirector">Profundity</label>
+                                {{ form.profundity(class='form-control', placeholder='Out of 5') }}
+                            </div>
+                            <div class="col">
+                                <label for="movieDirector">Overall</label>
+                                {{ form.overall(class='form-control', placeholder='Out of 5') }}
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="movieDirector">Link to Movie</label>
+                                {{ form.link(class='form-control', placeholder='Enter the movie link here') }}
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">Upload poster for the film</label>
+                                {{ form.image(class='form-control') }}
+                            </div>
+                        </div>
+                        <br>
+                        {{ form.submit(class='btn btn-primary', onclick="loading()") }}
+                    </div>
+                  </form>
+
+            </div>                
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
