@@ -1,6 +1,6 @@
 # Movies By the Sea - Control Panel
 
-## **NOTE - THIS HAS BEEN DEPRICIATED**
+## **NOTE - THIS ADMIN PANEL WILL NO LONGER BE CONTINUED**
 
 Master Panel to write and update reviews to the main website. Reviews updated to DB using Firebase Realtime Database. Query written in firebase python wrapper - Pyrebase. Images stored using Firebase Storage capabilities. Database protected by authentication sign-in.
 
