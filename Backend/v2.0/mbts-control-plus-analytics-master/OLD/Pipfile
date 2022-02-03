@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+streamlit = "*"
+firebase = "*"
+python-dotenv = "*"
+python-jwt = "*"
+gcloud = "*"
+sseclient = "*"
+pycryptodome = "*"
+requests-toolbelt = "*"
+firebase-admin = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
